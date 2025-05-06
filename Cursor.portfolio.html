@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <style>
+:root {
+    --primary-black: #000000; /* Text color */
+    --primary-blue: #6a82fb; /* Main blue */
+    --primary-purple: #9f5de2; /* Main purple */
+    --primary-violet: #7f53ac; /* Main violet */
+    --primary-card: #4e4376; /* Card background: dark blue-violet */
+    --primary-gold: #FFB22C; /* Accent color */
+    --primary-white: #f7f7f7; /* For text on dark */
+    --section1: #6a82fb;
+    --section2: #7f53ac;
+    --section3: #9f5de2;
+    --section4: #5f2c82;
+    --section5: #4834d4;
+    --section6: #341f97;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #2d174d;
+    color: var(--primary-white);
+    padding-top: 80px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--primary-black);
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: var(--primary-gold);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s, text-decoration 0.2s;
+}
+nav ul li a:hover {
+    color: var(--primary-purple);
+    text-decoration: underline;
+}
+
+/* About Section */
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.profile-info img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #fff;
+    padding: 8px;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-gold);
+    color: var(--primary-black);
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background 0.2s, transform 0.2s;
+}
+.download-btn:hover {
+    background-color: var(--primary-purple);
+    color: var(--primary-white);
+    transform: scale(1.05);
+}
+
+/* Timeline Styles */
+.timeline-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 40px 0;
+    height: auto;
+    min-height: 300px;
+}
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary-gold);
+    z-index: 0;
+}
+.timeline-card {
+    background-color: var(--primary-card);
+    padding: 20px 20px 20px 60px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    text-align: left;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s, transform 0.2s;
+    color: var(--primary-white);
+    border: 4px solid var(--primary-purple);
+    margin-left: 40px;
+}
+.timeline-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    transform: translateY(-8px) scale(1.03);
+}
+.timeline-marker {
+    width: 22px;
+    height: 22px;
+    background: var(--primary-gold);
+    border: 3px solid var(--primary-white);
+    border-radius: 50%;
+    position: absolute;
+    left: -41px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+@media (max-width: 768px) {
+    .timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+    .timeline::before {
+        left: 20px;
+    }
+    .timeline-card {
+        max-width: 100%;
+        margin-left: 30px;
+        padding-left: 50px;
+    }
+    .timeline-marker {
+        left: -31px;
+    }
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.skill-card {
+    background-color: var(--primary-card);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    color: var(--primary-white);
+    border: 4px solid var(--primary-purple);
+}
+.skill-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    transform: scale(1.05);
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.project-card {
+    background-color: var(--primary-card);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    color: var(--primary-white);
+    border: 4px solid var(--primary-purple);
+}
+.project-img {
+    width: 100%;
+    max-height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+.project-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    transform: scale(1.05);
+}
+
+/* Certificates Grid */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.certificate-card {
+    background-color: var(--primary-card);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    color: var(--primary-white);
+    border: 4px solid var(--primary-purple);
+}
+.certificate-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    transform: scale(1.05);
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid var(--primary-purple);
+    border-radius: 5px;
+    background: var(--primary-white);
+    color: var(--primary-black);
+}
+
+.contact-form textarea {
+    height: 150px;
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    background-color: var(--primary-gold);
+    color: var(--primary-black);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.contact-form button:hover {
+    background-color: var(--primary-purple);
+    color: var(--primary-white);
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .profile-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .timeline {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .timeline-card {
+        width: 100%;
+    }
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+/* Section Gradients */
+.section-about { background: #6a4fb3; border-radius: 20px; overflow: hidden; }
+.section-qualifications { background: #2574a9; border-radius: 20px; overflow: hidden; }
+.section-skills { background: #4b3869; border-radius: 20px; overflow: hidden; }
+.section-projects { background: #1b4965; border-radius: 20px; overflow: hidden; }
+.section-certificates { background: #3d3c5c; border-radius: 20px; overflow: hidden; }
+.section-contact { background: #274472; border-radius: 20px; overflow: hidden; }
+.section-resume { background: #5e548e; border-radius: 20px; overflow: hidden; }
+
+/* Remove background and border-radius from .container */
+.section-about > .container,
+.section-qualifications > .container,
+.section-skills > .container,
+.section-projects > .container,
+.section-certificates > .container,
+.section-contact > .container,
+.section-resume > .container {
+    background: none;
+    border-radius: 0;
+    overflow: visible;
+}
+
+section {
+    padding: 40px 0;
+    margin-bottom: 32px;
+}
+
+.timeline-card, .skill-card, .project-card, .certificate-card {
+    background-color: var(--primary-card);
+    color: var(--primary-white);
+    border: 4px solid var(--primary-purple);
+}
+
+.intro-greeting {
+    font-size: 2.6rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 18px;
+    color: var(--primary-gold);
+    letter-spacing: 1px;
+}
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#qualifications">Qualifications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section-about">
+        <div class="container">
+            <div class="intro-greeting">Hi! I'm Sharvari Kumbhar</div>
+            <h1>About Me</h1>
+            <div class="profile-info">
+                <img src="https://i.postimg.cc/J45CL1zp/shayupic.jpg" alt="Profile Picture">
+                <div class="contact-details">
+                    <p>Email: kmbbharsharvari2005@gmail.com</p>
+                    <p>Phone: +91 9359854659</p>
+                </div>
+            </div>
+            <p class="bio">First-Year Student | Electronics and Telecommunication Engineering | MIT Academy of Engineering</p>
+            <p>I am a passionate and curious first-year Electronics and Telecommunication Engineering student at MIT. Eager to explore the intersection of technology and innovation, I am building a strong foundation in the field while honing my problem-solving and analytical skills. With a keen interest in [mention any specific areas—like embedded systems, IoT, or signal processing], I look forward to contributing to impactful projects and expanding my knowledge.
+            </p>
+        </div>
+    </section>
+
+    <!-- Qualifications Section -->
+    <section id="qualifications" class="section-qualifications">
+        <div class="container">
+            <h2>Qualifications</h2>
+            <div class="timeline-wrapper">
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="timeline-marker"></div>
+                        <h3>2024</h3>
+                        <p>pursuing Electronics and Telecommunication Engineering at MIT Academy of Engineering,first year</p>
+                        <p>CGPA: 8.33</p>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-marker"></div>
+                        <h3>2024</h3>
+                        <p>completed 12th grade at Modern College</p>
+                        <p>Percentage: 86.67%</p>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-marker"></div>
+                        <h3>2022</h3>
+                        <p>completed 10th grade at Dnyangannga Vidyalaya, jarandi</p>
+                        <p>Percentage: 94.80%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <!-- Languages Skills -->
+                <div class="skill-category">
+                    <h3>Programming & Languages</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">C</div>
+                        <div class="skill-card">Python</div>
+                        <div class="skill-card">HTML</div>
+                        <div class="skill-card">Core Engineering</div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">Arduino</div>
+                        <div class="skill-card">Microprocessor</div>
+                        <div class="skill-card">KiCad</div>
+                        <div class="skill-card">Proteus</div>
+                        <div class="skill-card">Circuit Designing</div>
+                    </div>
+                </div>
+
+                <!-- Social Skills -->
+                <div class="skill-category">
+                    <h3>Social Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">Communication</div>
+                        <div class="skill-card">Public Speaking</div>
+                        <div class="skill-card">Vocational Skills</div>
+                    </div>
+                </div>
+
+                <!-- Hobbies -->
+                <div class="skill-category">
+                    <h3>Hobbies</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">Music Listening</div>
+                        <div class="skill-card">Dancing</div>
+                        <div class="skill-card">Writing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Resume Section -->
+    <section id="resume" class="section-resume">
+        <div class="container">
+            <h2>Resume</h2>
+            <div style="display: flex; justify-content: center;">
+                <a href="https://drive.google.com/file/d/1UznTfXHOlJuLlM7FsF6dQzjVcpA9shqu/view?usp=sharing" download class="download-btn">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://i.postimg.cc/HkMZgzzd/Screenshot-2025-05-06-172755.png" alt="Hostel Management System" class="project-img">
+                    <h3>Hostel Management System</h3>
+                    <p>An application to make hostel life easier</p>
+                    <a href="https://app.jotform.com/243470523342450">App link</a>
+                </div>
+                <div class="project-card">
+                    <img src="https://i.postimg.cc/vBtCdhQc/images.jpg" alt="LED Blinking Circuit" class="project-img">
+                    <h3>LED blinking Circuit</h3>
+                    <p>and LED blinking circuit using IC 555 timer</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://i.postimg.cc/j53QNncM/circuit.jpg" alt="Smart Gas Monitoring System" class="project-img">
+                    <h3>Smart gas monitoring System</h3>
+                    <p>This project focuses on developing a smart system to detect and monitor LPG gas cyliner using an Arduino-based setup. the system continuously measures the weight of gas in a container.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://i.postimg.cc/qM3XhR3G/download.jpg" alt="Human Following Robot" class="project-img">
+                    <h3>Human Following Robot</h3>
+                    <p>This project is a human following robot that uses an Arduino microcontroller and a servo motor to follow a person.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="section-certificates">
+        <div class="container">
+            <h2>Certificates</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <h3>Hackerrank</h3>
+                    <p>Issuing organization: Hackerrank</p>
+                  
+                    <a href="https://www.hackerrank.com/certificates/8ad41d66b8b2" download class="download-btn">Download Certificate</a>
+                </div>
+                <div class="certificate-card">
+                    <h3>NASSCOM</h3>
+                    <p>Issuing organization: NASSCOM</p>
+                    
+                    <a href="https://drive.google.com/file/d/1HKP2NVR41Xgraz0NcWAGdHhxF2mqK14K/view?usp=sharing" download class="download-btn">Download Certificate</a>
+                </div>
+                <div class="certificate-card">
+                    <h3>CISCO</h3>
+                    <p>Issuing organization: CISCO</p>
+                    
+                    <a href="https://drive.google.com/file/d/1zMW4194AaiwGdOoI8rp3pGZ0l0TNUTwh/view?usp=sharing" download class="download-btn">Download Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <form action="https://formspree.io/f/xldjzolk" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="subject" placeholder="Subject">
+                <textarea name="message" placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sharvari Kumbhar. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
